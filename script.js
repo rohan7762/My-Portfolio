@@ -54,41 +54,39 @@ $(document).ready(function () {
 
 
     // Contact form
-    $("#contact-form").submit(function (event) {
+// Contact form
+$("#contact-form").submit(function (event) {
 
-        event.preventDefault();
+    event.preventDefault();
 
-        // EmailJS will be configured properly in the next step.
-        if (typeof emailjs === "undefined") {
-            alert("Contact form is currently being configured. Please contact me through LinkedIn or email for now.");
-            return;
-        }
+    if (typeof emailjs === "undefined") {
+        alert("Contact form is currently unavailable. Please contact me through LinkedIn or email.");
+        return;
+    }
 
-        emailjs.init({
-            publicKey: "YOUR_EMAILJS_PUBLIC_KEY"
-        });
+    emailjs.init({
+        publicKey: "GaMcPwYDfgLwELBK3"
+    });
 
-        emailjs.sendForm(
-            "contact_service",
-            "template_contact",
-            "#contact-form"
-        )
-        .then(function (response) {
+    emailjs.sendForm(
+        "portfolio_contact",
+        "template_43s1twf",
+        "#contact-form"
+    )
+    .then(function (response) {
 
-            console.log("SUCCESS!", response.status, response.text);
+        console.log("SUCCESS!", response.status, response.text);
 
-            document.getElementById("contact-form").reset();
+        document.getElementById("contact-form").reset();
 
-            alert("Message sent successfully!");
+        alert("Message sent successfully!");
 
-        })
-        .catch(function (error) {
+    })
+    .catch(function (error) {
 
-            console.log("FAILED...", error);
+        console.log("FAILED...", error);
 
-            alert("Message could not be sent. Please try again later.");
-
-        });
+        alert("Message could not be sent. Please try again later.");
 
     });
 
